@@ -1,0 +1,15 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        hashmap = { ")" : "(", "]" : "[", "}" : "{" }
+        stack = deque()
+
+        for p in s:
+            if p not in hashmap:
+                stack.append(p)
+            elif len(stack) > 0 and hashmap[p] == stack[-1]:
+                stack.pop()
+            else:
+                return False
+                
+        if len(stack) > 0: return False
+        return True
